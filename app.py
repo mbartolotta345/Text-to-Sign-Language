@@ -5,7 +5,12 @@ app = Flask(__name__)
 
 def word_list(word: str) -> list[str]:
     '''Takes the word input and converts it into a list of each letter'''
-    return list(word)
+    letter_list = []
+    alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q",'r"","s","t","u"","v","w","x","y","z']
+    for letter in word:
+        if letter in alphabet:
+            letter_list.append(letter)
+    return letter_list
 
 def letter_to_image(letters: list[str]) -> list[str]:
     '''Converts a list of letters into a list of corresponding ASL image filenames'''
