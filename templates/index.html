@@ -3,9 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>ASL Sign Language Viewer</title>
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">-->
 </head>
 <body>
-    <div><h1>Home Page</h1></div>
+    <header>
+        <h1>ASL Sign Language Viewer</h1>
+    </header>
+    
+    <main>
+        <form method="post" action="/"> <!-- Specify action for form submission -->
+            <input type="text" name="word" placeholder="Enter a word" required> <!-- Placeholder for user input -->
+            <button type="submit">Submit</button>
+        </form>
+
+        <section class="asl-images">
+            {% if images %} <!-- Check if there are images to display -->
+                <h2>ASL Signs for Your Word:</h2>
+                {% for image in images %}
+                    <img src="{{ url_for('static', filename='asl_images/' + image) }}" alt="ASL sign for {{ image }}" class="asl-sign"> <!-- Use descriptive alt text -->
+                {% endfor %}
+            {% else %}
+                <p>Please enter a word to see its ASL signs.</p> <!-- Prompt for user to enter a word -->
+            {% endif %}
+        </section>
+    </main>
 </body>
 </html>
